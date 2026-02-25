@@ -1,0 +1,47 @@
+{
+  "bankName" : "HDFC",
+  "count" : 9,
+  "transactions" : [ {
+    "date" : "mm/dd/yyyy",
+    "description" : "Payment - Credit Card",
+    "debit" : 5400.0,
+    "balance" : 170400.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Payment - Insurance",
+    "debit" : 3000.0,
+    "balance" : 167400.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Account Transfer In",
+    "credit" : 500000.0,
+    "balance" : 667400.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Cheque Deposite",
+    "credit" : 10000.0,
+    "balance" : 677400.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Payment - Electricity",
+    "debit" : 1500.0,
+    "balance" : 675900.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Payment - Water Utility",
+    "debit" : 600.0,
+    "balance" : 675300.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Payment - Car Loan",
+    "debit" : 3500.0,
+    "balance" : 671800.0
+  }, {
+    "date" : "mm/dd/yyyy",
+    "description" : "Account Transfer Out",
+    "debit" : 80000.0,
+    "balance" : 591800.0
+  }, {
+    "description" : "--- End of Transactions ---"
+  } ]
+}

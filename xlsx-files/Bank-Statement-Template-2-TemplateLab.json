@@ -1,0 +1,112 @@
+{
+  "bankName" : "ICICI",
+  "count" : 19,
+  "transactions" : [ {
+    "detail" : "Balance Brought Forward",
+    "balance" : 8313.3
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Fast Payment",
+    "detail" : "Amazon",
+    "paid out" : 132.3,
+    "balance" : 8180.999999999999
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "BACS",
+    "detail" : "eBAY Trading Co.",
+    "paid out" : 515.22,
+    "balance" : 7665.779999999999
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Fast Payment",
+    "detail" : "Morrisons Petrol",
+    "paid out" : 80.0,
+    "balance" : 7585.779999999999
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "BACS",
+    "detail" : "Business Loan",
+    "paid in" : 20000.0,
+    "balance" : 27585.78
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "BACS",
+    "detail" : "Jumes White Media",
+    "paid out" : 2416.85,
+    "balance" : 25168.93
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Fast Payment",
+    "detail" : "ATM High Street",
+    "paid out" : 100.0,
+    "balance" : 25068.93
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "BACS",
+    "detail" : "Accorn Advertising Studios",
+    "paid out" : 150.0,
+    "balance" : 24918.93
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Fast Payment",
+    "detail" : "Marriott Hotels",
+    "paid out" : 177.0,
+    "balance" : 24741.93
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Fast Payment",
+    "detail" : "Abelio Scotrail Ltd",
+    "paid out" : 122.22,
+    "balance" : 24619.71
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Fast Payment",
+    "detail" : "Cheque 000234",
+    "paid out" : 1200.0,
+    "balance" : 23419.71
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "Int. Bank",
+    "detail" : "Interest Paid",
+    "paid in" : 9.33,
+    "balance" : 23429.04
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "DD",
+    "detail" : "OVO Energy",
+    "paid out" : 270.0,
+    "balance" : 23159.04
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "BACS",
+    "detail" : "Toyota Online",
+    "paid out" : 10525.4,
+    "balance" : 12633.640000000001
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "BACS",
+    "detail" : "HMRC",
+    "paid out" : 1000.0,
+    "balance" : 11633.640000000001
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "DD",
+    "detail" : "OVLA",
+    "paid out" : 280.0,
+    "balance" : 11353.640000000001
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "EBP",
+    "detail" : "Michael Kor Salary",
+    "paid out" : 1554.0,
+    "balance" : 9799.640000000001
+  }, {
+    "date" : "mm/dd/yyyy",
+    "payment type" : "DD",
+    "detail" : "BOS Mastercard",
+    "paid out" : 4000.0,
+    "balance" : 5799.640000000001
+  }, {
+    "date" : "Note:"
+  } ]
+}

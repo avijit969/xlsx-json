@@ -1,0 +1,50 @@
+{
+    "HDFC": {
+        "headers": [
+            "Date",
+            "Narration",
+            "Chq./Ref.No.",
+            "ValueDt",
+            "Withdrawal Amt.",
+            "Deposit Amt.",
+            "Closing Balance"
+        ]
+    },
+    "BNI": {
+        "headers": [
+            "Date",
+            "Reference",
+            "Transaction Description",
+            "Credit",
+            "Debit",
+            "Balance"
+        ]
+    },
+    "BICKSLOW_BANK": {
+        "headers": [
+            "Date",
+            "Payment Type",
+            "Detail",
+            "Paid In",
+            "Paid Out",
+            "Balance"
+        ]
+    },
+    "SUNTRUST": {
+        "headers": [
+            "Date",
+            "Description",
+            "Amount"
+        ]
+    },
+    "INDIA_POST_PAYMENTS_BANK": {
+        "headers": [
+            "DATE",
+            "TRANID",
+            "TRANSACTIONPARTICULARS",
+            "WITHDRWAL",
+            "DEPOSIT",
+            "BALANCE"
+        ]
+    }
+}
