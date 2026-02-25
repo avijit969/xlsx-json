@@ -2,7 +2,7 @@
     "HDFC": {
         "headers": [
             "Date",
-            "Narration",
+            "description",
             "Chq./Ref.No.",
             "ValueDt",
             "Withdrawal Amt.",

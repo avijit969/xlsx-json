@@ -2,6 +2,7 @@ package com.disha.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.poi.ss.usermodel.*;
 
@@ -30,7 +31,7 @@ public class BankStatementParser {
         String filePath = args[1];
 
         try {
-            List<Map<String, Object>> transactions = parseExcel(filePath);
+            List<Map<String, Object>> transactions = parseExcel(bankName, filePath);
 
             Map<String, Object> output = new LinkedHashMap<>();
             output.put("bankName", bankName);
@@ -56,8 +57,34 @@ public class BankStatementParser {
         }
     }
 
-    public static List<Map<String, Object>> parseExcel(String filePath) throws IOException {
+    private static Map<String, List<String>> loadBankConfig() {
+        try {
+            File configFile = new File("bank-config.json");
+            if (configFile.exists()) {
+                ObjectMapper map = new ObjectMapper();
+                Map<String, Map<String, List<String>>> config = map.readValue(configFile, new TypeReference<Map<String, Map<String, List<String>>>>() {});
+                Map<String, List<String>> result = new HashMap<>();
+                for (Map.Entry<String, Map<String, List<String>>> entry : config.entrySet()) {
+                    result.put(entry.getKey(), entry.getValue().get("headers"));
+                }
+                return result;
+            }
+        } catch (Exception e) {
+            System.err.println("Warning: failed to load bank-config.json: " + e.getMessage());
+        }
+        return Collections.emptyMap();
+    }
+
+    public static List<Map<String, Object>> parseExcel(String bankName, String filePath) throws IOException {
         List<Map<String, Object>> transactions = new ArrayList<>();
+        Map<String, List<String>> allConfigs = loadBankConfig();
+        List<String> allowedHeaders = allConfigs.get(bankName);
+        List<String> allowedHeadersLower = new ArrayList<>();
+        if (allowedHeaders != null) {
+            for (String h : allowedHeaders) {
+                allowedHeadersLower.add(h.toLowerCase().trim());
+            }
+        }
 
         try (Workbook workbook = WorkbookFactory.create(new File(filePath))) {
             // Take the first active sheet
@@ -104,6 +131,38 @@ public class BankStatementParser {
                 }
             }
 
+            // Filter columns based on config if exists
+            if (allowedHeadersLower != null && !allowedHeadersLower.isEmpty()) {
+                Map<Integer, String> filteredCol = new HashMap<>();
+                for (Map.Entry<Integer, String> entry : columns.entrySet()) {
+                    String colLower = entry.getValue().toLowerCase().trim();
+                    String matchedOriginalHeader = null;
+                    
+                    // exact lower match first
+                    for (int i = 0; i < allowedHeadersLower.size(); i++) {
+                        String ahLower = allowedHeadersLower.get(i);
+                        if (colLower.replace("\n", "").replace("  ", " ").equals(ahLower)) {
+                            matchedOriginalHeader = allowedHeaders.get(i);
+                            break;
+                        }
+                    }
+                    if (matchedOriginalHeader == null) {
+                        // fuzzy match second
+                        for (int i = 0; i < allowedHeadersLower.size(); i++) {
+                            String ahLower = allowedHeadersLower.get(i);
+                            if (colLower.contains(ahLower) || ahLower.contains(colLower.replace("\n", ""))) {
+                                matchedOriginalHeader = allowedHeaders.get(i);
+                                break;
+                            }
+                        }
+                    }
+                    if (matchedOriginalHeader != null) {
+                        filteredCol.put(entry.getKey(), matchedOriginalHeader);
+                    }
+                }
+                columns = filteredCol;
+            }
+
             // 2. Parse transactions below the header
             DataFormatter dataFormatter = new DataFormatter();
             
@@ -142,16 +201,9 @@ public class BankStatementParser {
                     }
                 }
 
-                // If the entire row was empty (or no mapped columns had data), we might have reached end of data
                 if (isEmptyRow) {
-                    // Usually there are intermediate empty rows, we could continue but ignore this one
-                    continue; // You can also break if data format guarantees no empty rows in between
-                }
-
-                // Sometimes footers have one column filled with "Closing Balance". We could detect and stop, 
-                // but just adding it as a transaction might be okay, or we could filter it out.
-                // We'll keep it simple and just include if it has values.
-                
+                   continue;
+                }                
                 transactions.add(transaction);
             }
         }
